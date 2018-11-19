@@ -1,0 +1,29 @@
+#
+# .gitattributes
+#
+
+## general ##
+*				text=auto
+
+## shell scripts & related ##
+*.sh			text eol=lf
+*.inc			text eol=lf
+*.inc.template	text eol=lf
+
+## powershell scripts & related ##
+*.ps1			text eol=crlf
+
+## javascript & related ##
+*.js			text eol=lf
+
+## CSS & related ##
+*.css			text eol=lf diff=css
+*.less			text eol=lf
+
+## HTML & related ##
+*.htm			text eol=lf diff=html
+*.html			text eol=lf diff=html
+*.xhtml			text eol=lf diff=html
+
+## Python ##
+*.py			text eol=lf diff=python

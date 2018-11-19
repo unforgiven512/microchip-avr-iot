@@ -1,15 +1,31 @@
-# node_modules
-ui/node_modules/
-cloud-functions/node_modules
-cloud-functions/functions/node_modules
+#
+# .gitignore
+#
 
-# build files
+## general ##
+*~
+*.bak
+
+## firebase ##
+.firebase/
+
+## node_modules ##
+ui/node_modules/
+functions/node_modules
+
+## npm-related files ##
+ui/*.cmd
+functions/*.cmd
+
+## build files ##
 ui/build
 ui/dist
 ui/image
 
-# auto-generated config files
+## auto-generated config files ##
 config.txt
 
-# secrets
-cloud-functions/serviceAccount.json
+## secrets ##
+functions/serviceAccount.json
+setup.inc
+
