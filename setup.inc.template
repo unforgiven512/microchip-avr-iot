@@ -1,0 +1,28 @@
+#
+# setup.inc.template
+#
+# Included definitions for use by the 'setup.sh' script, to be sourced at the
+# start of the file.
+#
+
+##
+## Uncomment the following line if you have never used the 'firebase' command-line tool, and it is necessary to login
+## and authorize access for the 'firebase' command-line tool.
+##
+#FIREBASE_CLI_NEEDS_LOGIN=true
+
+##
+## Uncomment the following line if this script is being run on your local machine. Leave it commented out if the script
+## is being run in the Google Cloud Shell (or some other remote shell environment, such as SSH to a Linux host)
+##
+#SETUP_IS_LOCAL=true
+
+##
+## The "region" that your Google Cloud Platform project is located within
+##
+CLOUD_REGION=us-central1
+
+##
+## Your "device ID", as part of the "avr-iot.com/.../..." URI
+##
+DEVICE_ID="0000111122223333FF"
