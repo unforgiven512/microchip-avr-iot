@@ -3,7 +3,7 @@ import React from 'react'
 import './TileDemo.less'
 
 export default function TileDemo( props ) {
-  const { image, title, category, url } = props
+  const { image, title, category, url } = props;
 
   return (
     <a href={url} target="_blank" className="demo-tile">

@@ -1,11 +1,11 @@
 const path = require( 'path' );
-const webpack = require( 'webpack' )
-const CopyWebpackPlugin = require( 'copy-webpack-plugin' )
+const webpack = require( 'webpack' );
+const CopyWebpackPlugin = require( 'copy-webpack-plugin' );
 const combineLoaders = require( 'webpack-combine-loaders' );
 const ExtractTextPlugin = require( 'extract-text-webpack-plugin' );
 const Dotenv = require( 'dotenv-webpack' );
-const autoprefixer = require( 'autoprefixer' )
-const postcssnested = require( 'postcss-nested' )
+const autoprefixer = require( 'autoprefixer' );
+const postcssnested = require( 'postcss-nested' );
 
 module.exports = {
   entry : [ 'babel-polyfill', './src/index.js' ],
@@ -18,12 +18,12 @@ module.exports = {
   },
 
   // Necessary plugins for hot load
-  plugins : [ 
+  plugins : [
     new webpack.NoEmitOnErrorsPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new ExtractTextPlugin( 'style.css', { allChunks : true } ),
     new Dotenv( {
-      path : './.env', // Path to .env file (this is the default) 
+      path : './.env', // Path to .env file (this is the default)
     } ),
     new webpack.LoaderOptionsPlugin( {
       options : {
@@ -56,15 +56,15 @@ module.exports = {
         test : /.jsx?$/,
         loader : 'babel-loader',
         exclude : /node_modules/,
-        query : { 
-          presets : [ '@babel/preset-env', '@babel/preset-react' ], 
-          plugins : [ 
-            'transform-class-properties', 
-            'transform-object-assign', 
+        query : {
+          presets : [ '@babel/preset-env', '@babel/preset-react' ],
+          plugins : [
+            'transform-class-properties',
+            'transform-object-assign',
             [
-              'babel-plugin-root-import',  
+              'babel-plugin-root-import',
               { rootPathPrefix : '~', rootPathSuffix : 'src' }
-            ]  
+            ]
           ] },
       },
       /* This will put all css, less, styles through CSS Modules' localization except global-style.less */
@@ -88,7 +88,7 @@ module.exports = {
         // options : { limit : 8192 }, // limit => file.size =< 8192 bytes ? DataURI : File
       },
       { test : /\.woff(2)?(\?v=[0-9].[0-9].[0-9])?$/, loader : 'url-loader?mimetype=application/font-woff' },
-      { test : /\.(ttf|eot)(\?v=[0-9].[0-9].[0-9])?$/, loader : 'file-loader' }, // ?name=[name].[ext]" } 
+      { test : /\.(ttf|eot)(\?v=[0-9].[0-9].[0-9])?$/, loader : 'file-loader' }, // ?name=[name].[ext]" }
     ],
   }
 };

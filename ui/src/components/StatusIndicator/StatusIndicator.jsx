@@ -15,9 +15,9 @@ import './StatusIndicator.less'
 
 /**
  * @param {object} props
- * @param {string} props.statusType required -- which indicator to display 
- * @param {bool} props.connected whether indicator should be blue or not 
- * @param {string} props.animation type of animation for indicator (e.g. ping or heartbeat) 
+ * @param {string} props.statusType required -- which indicator to display
+ * @param {bool} props.connected whether indicator should be blue or not
+ * @param {string} props.animation type of animation for indicator (e.g. ping or heartbeat)
  * @param {bool} props.hold if false, next item in animation queue will automatically trigger when indicator animation completes
  */
 class StatusIndicator extends React.Component {
@@ -26,25 +26,25 @@ class StatusIndicator extends React.Component {
     // wait until connection animation completes, and then queue next
     const { hold, connected, statusType, currentAnimation } = this.props;
     if ( !hold && connected && ( statusType === currentAnimation.element ) ) {
-      setTimeout( () => this.props.dispatch( animationComplete( statusType ) ), currentAnimation.length )  
-    }    
+      setTimeout( () => this.props.dispatch( animationComplete( statusType ) ), currentAnimation.length )
+    }
   }
-  
+
   render() {
 
     const { connected, statusType, currentAnimation, animationCompleteObj, animation, hold } = this.props;
-    const animate = hold || ( connected && ( currentAnimation.element === statusType ) ) // triggers animation if indicator is holding or it's connected and the current queue item
-    const animationComplete = connected && animationCompleteObj[statusType]
+    const animate = hold || ( connected && ( currentAnimation.element === statusType ) ); // triggers animation if indicator is holding or it's connected and the current queue item
+    const animationComplete = connected && animationCompleteObj[statusType];
 
     const status = {
       device : ( animationComplete ) ? deviceConnected : devicePending,
       firebase : ( animationComplete ) ? firebaseConnected : firebasePending,
       iot : ( animationComplete ) ? iotCoreConnected : iotCorePending,
       wifi : ( animationComplete ) ? wifiConnected : wifiPending
-    }
-    
+    };
+
     let animationElement;
-    const circleElements = [ 'firebase', 'wifi' ]
+    const circleElements = [ 'firebase', 'wifi' ];
     if ( circleElements.includes( statusType ) ) {
       animationElement = <div className={`circle ${animate || ( animationComplete && animation !== 'heartbeat' ) ? animation : ''}`} />
     } else if ( statusType === 'iot' ) {
@@ -58,10 +58,10 @@ class StatusIndicator extends React.Component {
 
     return (
       <div className={`indicator ${statusType} ${animationComplete ? 'connected' : ''}`}>
-        { animationElement }        
-        <img className="icon" src={status[statusType]} alt="" />    
+        { animationElement }
+        <img className="icon" src={status[statusType]} alt="" />
         <img className={`check ${animationComplete ? '' : 'hidden'}`} alt="" src={checkMark} />
-      </div>  
+      </div>
     )
   }
 }
@@ -69,7 +69,7 @@ class StatusIndicator extends React.Component {
 const mapStateToProps = state => ( {
   currentAnimation : state.UIReducer.currentAnimation,
   animationCompleteObj : state.UIReducer.animationComplete
-} )
+} );
 
 export default connect( mapStateToProps )( StatusIndicator )
 

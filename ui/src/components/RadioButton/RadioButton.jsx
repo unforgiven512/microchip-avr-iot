@@ -20,7 +20,7 @@ export default class RadioButton extends React.Component {
     if ( e.keyCode === 13 && document.activeElement.id === this.props.id ) {
       this.props.onClick( this.props.val )
     }
-  }
+  };
 
   render () {
     const { selected, text, onClick, val, id } = this.props;

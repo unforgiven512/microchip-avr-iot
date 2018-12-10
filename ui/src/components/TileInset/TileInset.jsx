@@ -17,4 +17,4 @@ export default function TileInset ( props ) {
 TileInset.propTypes = {
 	title: PropTypes.string,
 	className: PropTypes.string
-}
+};

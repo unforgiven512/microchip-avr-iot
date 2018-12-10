@@ -8,7 +8,7 @@ import './WelcomePane.less';
 
 class WelcomePane extends React.Component {
   constructor( props ) {
-    super( props )
+    super( props );
     this.state = {
       showStatus : true
     }
@@ -21,8 +21,8 @@ class WelcomePane extends React.Component {
   }
 
   render() {
-    const { minimal } = this.props
-    const { showStatus } = this.state
+    const { minimal } = this.props;
+    const { showStatus } = this.state;
 
     if ( minimal ) {
       return (
@@ -46,7 +46,7 @@ class WelcomePane extends React.Component {
               </p>
             </div>
             <WelcomeInset connected={false} />
-          </div>      
+          </div>
           <StatusStrip />
         </div>
       </main>

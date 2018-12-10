@@ -4,7 +4,7 @@ import Button from '../Button/Button'
 
 import './WelcomeInset.less'
 
-const { DEVICE_ID } = Config
+const { DEVICE_ID } = Config;
 export default class WelcomeInset extends React.Component {
   render() {
     if ( DEVICE_ID ) {
@@ -19,7 +19,7 @@ export default class WelcomeInset extends React.Component {
             href={`/device/${DEVICE_ID}`}
             color="blue" />
           <p>If you are connecting a different board, you may need to configure the IoT Core Registry name in the recordMessage Cloud Function and on your device.</p>
-        </div>  
+        </div>
       )
     }
     return (
@@ -30,7 +30,7 @@ export default class WelcomeInset extends React.Component {
           <span className="device-link">{`${window.location.hostname}/device/<Your Device's UID>`}</span>
         </p>
         <p>If you are connecting a different board, you may need to configure the IoT Core Registry name in the recordMessage Cloud Function and on your device.</p>
-      </div> 
+      </div>
     )
   }
 }

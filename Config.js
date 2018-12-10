@@ -3,6 +3,6 @@ const Config = {
   FIREBASE_BASE_URL: '/avr-iot/data/',
   DEVICE_ID: '<deviceid>',
   FIREBASE_CONFIG: '<fbconfig>'
-}
+};
 
 exports.Config = Config;

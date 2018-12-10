@@ -6,7 +6,7 @@ import './Button.less';
 
 /**
  * Returns clickable object that looks like a button
- * @param {object} props 
+ * @param {object} props
  * @param {string} props.text required, sets button text
  * @param {string} props.href target location for default (<a href>) and link buttons
  * @param {function} props.onClick specifies action for button buttons
@@ -21,10 +21,10 @@ export default function Button( props ) {
 
   if ( type === 'button' ) {
     return (
-      <button 
-        id={id} 
-        className={`btn ${colorClass} ${className}`} 
-        style={style} 
+      <button
+        id={id}
+        className={`btn ${colorClass} ${className}`}
+        style={style}
         onClick={() => onClick()}>
         {text}
       </button>
@@ -51,7 +51,7 @@ Button.defaultProps = {
   type : '',
   onClick : () => null,
   id : ''
-}
+};
 
 Button.propTypes = {
   text : PropTypes.string.isRequired,

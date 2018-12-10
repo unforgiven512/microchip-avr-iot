@@ -23,11 +23,11 @@ function normalizeDomain( dataArray, minDistance ) {
 
 function openSaveFileDialog( data, filename, mimetype ) {
 
-  if ( !data ) return
+  if ( !data ) return;
 
   const blob = data.constructor !== Blob
     ? new Blob( [ data ], { type : mimetype || 'application/octet-stream' } )
-    : data
+    : data;
 
   if ( navigator.msSaveBlob ) {
     navigator.msSaveBlob( blob, filename );
@@ -35,16 +35,16 @@ function openSaveFileDialog( data, filename, mimetype ) {
   }
 
   const lnk = document.createElement( 'a' ),
-    url = window.URL
+    url = window.URL;
 
-  const objectURL = url.createObjectURL( blob )
+  const objectURL = url.createObjectURL( blob );
 
   if ( mimetype ) {
     lnk.type = mimetype;
   }
 
   lnk.download = filename || 'download';
-  lnk.href = objectURL
+  lnk.href = objectURL;
   lnk.dispatchEvent( new MouseEvent( 'click' ) );
   setTimeout( url.revokeObjectURL.bind( url, objectURL ) );
 
@@ -55,4 +55,4 @@ module.exports = {
   normalizeDomain,
   getTimeOffset,
   openSaveFileDialog
-}
+};

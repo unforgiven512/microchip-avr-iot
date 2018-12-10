@@ -22,14 +22,14 @@ class Modal extends React.Component {
 
   toggleModal = ( e ) => {
     this.props.dispatch( toggleModal() )
-  }
+  };
 
   handleOverlayClick = ( e ) => {
-    // fire toggleModal only if overlay itself, and not child window is clicked    
+    // fire toggleModal only if overlay itself, and not child window is clicked
     if ( e.target.id === 'overlay' ) {
       this.toggleModal();
     }
-  }
+  };
 
   handleKeyPress = ( e ) => {
     if ( e.keyCode === 27 ) {
@@ -44,32 +44,32 @@ class Modal extends React.Component {
         document.getElementById( 'modal-cancel' ).focus();
       }
     }
-  }
+  };
 
   renderText = ( modalType ) => {
     if ( modalType === 'graduate' ) {
       return <p>Are you sure you want to remove this device from the Sandbox? You will not be able undo this action or access this device in the Quick Start Experience.</p>
     }
     return <p>This feature is not currently available. Check back soon!</p>
-  }
+  };
 
   render() {
-    const { modalType } = this.props
-    const title = modalType === 'graduate' ? 'Remove Device from Sandbox' : 'Coming Soon'
+    const { modalType } = this.props;
+    const title = modalType === 'graduate' ? 'Remove Device from Sandbox' : 'Coming Soon';
 
-    let confirmButton
+    let confirmButton;
     if ( modalType === 'graduate' ) {
       confirmButton = (
-        <Button 
-          id="modal-confirm" 
+        <Button
+          id="modal-confirm"
           onClick={() => {
             ReactGA.event( {
               category : 'Graduate',
               action : 'Graduate clicked'
             } )
           }}
-          href="https://github.com/Leverege/microchip-avr-iot/" 
-          style={{ padding : '8px 28px' }} 
+          href="https://github.com/Leverege/microchip-avr-iot/"
+          style={{ padding : '8px 28px' }}
           text="Graduate" />
       )
     }
@@ -89,6 +89,6 @@ class Modal extends React.Component {
 
 const mapStateToProps = state => ( {
   modalType : state.UIReducer.modalType
-} )
+} );
 
 export default connect( mapStateToProps )( Modal )

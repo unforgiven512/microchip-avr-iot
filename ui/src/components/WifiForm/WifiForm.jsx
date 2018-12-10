@@ -22,26 +22,26 @@ export class WifiForm extends React.Component {
       this.props.dispatch( setWifiFormError( { field : 'pw', msg : `Password must be less than ${MAX_SSID_LENGTH + 1} characters` } ) )
     } else {
       // valid form, submit
-      this.props.dispatch( toggleConfigDownloaded() )
-      downloadWifiConfig( ssid, pw, networkType );  
-    }   
-  }
+      this.props.dispatch( toggleConfigDownloaded() );
+      downloadWifiConfig( ssid, pw, networkType );
+    }
+  };
 
   handleTogglePwVis = () => {
     this.props.dispatch( togglePwVis() )
-  }
+  };
 
   handleSSIDChange = ( value ) => {
     this.props.dispatch( validateAndSetField( { value, field : 'ssid' } ) )
-  }
+  };
 
   handlePwChange = ( value ) => {
     this.props.dispatch( validateAndSetField( { value, field : 'pw' } ) )
-  }
+  };
 
   handleNetworkTypeChange = ( value ) => {
     this.props.dispatch( networkTypeChange( value ) )
-  }
+  };
 
   render() {
     const { hidePw, ssid, pw, networkType, error } = this.props.form;
@@ -49,16 +49,16 @@ export class WifiForm extends React.Component {
     const errorMsg = error ? <h4 className="error">{ error.msg }</h4> : '';
 
     const buttonStyle = {
-      marginTop : '20px', 
+      marginTop : '20px',
       padding : '8px 26px'
     };
 
-    const pwSection = ( 
+    const pwSection = (
       <div className="pw-group">
         <Input placeholder="Network Password" invalid={error && error.field === 'pw'} required value={pw} onChange={e => this.handlePwChange( e.target.value )} type={hidePw ? 'password' : 'text'} />
         <button id="toggle-pw-vis" onClick={() => this.handleTogglePwVis()}>{ hidePw ? 'Show password' : 'Hide password' }</button>
       </div>
-    )
+    );
 
     return (
       <div className="wifi-form">
@@ -69,32 +69,32 @@ export class WifiForm extends React.Component {
           <legend className="wifi-form-label">
           Network Type
           </legend>
-          <RadioButton 
-            id="radio-open" 
-            text="Open" 
-            selected={networkType === '1'} 
-            val="1" 
+          <RadioButton
+            id="radio-open"
+            text="Open"
+            selected={networkType === '1'}
+            val="1"
             onClick={this.handleNetworkTypeChange} />
-          <RadioButton 
-            id="radio-wpa" 
-            text="WPA/WPA2" 
-            selected={networkType === '2'} 
-            val="2" 
+          <RadioButton
+            id="radio-wpa"
+            text="WPA/WPA2"
+            selected={networkType === '2'}
+            val="2"
             onClick={this.handleNetworkTypeChange} />
-          <RadioButton 
-            id="radio-wep" 
-            text="WEP" 
-            selected={networkType === '3'} 
-            val="3" 
+          <RadioButton
+            id="radio-wep"
+            text="WEP"
+            selected={networkType === '3'}
+            val="3"
             onClick={this.handleNetworkTypeChange} />
         </fieldset>
         { networkType !== '1' ? pwSection : '' }
         <div className="wifi-form-buttons">
-          <Button 
-            style={buttonStyle} 
+          <Button
+            style={buttonStyle}
             color="blue-inverted"
-            text="Download Configuration" 
-            type="button" 
+            text="Download Configuration"
+            type="button"
             onClick={this.handleWifiSubmit} />
         </div>
       </div>
@@ -105,7 +105,7 @@ export class WifiForm extends React.Component {
 const mapStateToProps = state => ( {
   configDownloaded : state.UIReducer.configDownloaded,
   form : state.WifiReducer.wifiForm
-} )
+} );
 
 export default connect( mapStateToProps )( WifiForm )
 
