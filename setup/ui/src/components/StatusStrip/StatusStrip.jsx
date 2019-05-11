@@ -1,29 +1,29 @@
 import React from 'react';
-import {connect} from 'react-redux';
-import {animationComplete} from '../../actions/UIActions';
-import './StatusStrip.less';
-import StatusIndicator from '../StatusIndicator/StatusIndicator';
+import { connect } from 'react-redux'
+import classnames from 'classnames'
+import { animationComplete } from '../../actions/UIActions'
+import { deviceManager } from '../../actions/DeviceActions'
+import StatusIndicator from '../StatusIndicator/StatusIndicator'
+
+import './StatusStrip.less'
 
 class StatusStrip extends React.Component {
 
-    componentDidUpdate() {
-        // stagger line animation between indicator animations
-        if (this.props.currentAnimation.element === 'line') {
-            setTimeout(() => this.props.dispatch(animationComplete('line')), this.props.currentAnimation.length)
-        }
-    }
+  componentDidUpdate() {
+    // stagger line animation between indicator animations
+    const { currentAnimation, dispatch } = this.props
+    if ( currentAnimation.element === 'line' ) {
+      setTimeout( () => dispatch( animationComplete( 'line' ) ), currentAnimation.length )  
+    }    
+  }
 
-    render() {
-        const {
-            deviceConnected,
-            connectedToFirebase,
-            establishingFirebaseConnection,
-            deviceSpecified,
-            lineLength
-        } = this.props;
-        const deviceLive = deviceConnected && deviceSpecified;
+  render() {    
+    const { deviceConnected, connectedToFirebase, establishingFirebaseConnection, 
+            lineLength } = this.props
+    const deviceSpecified = !!deviceManager.device
+    const deviceLive = deviceConnected && deviceSpecified
+    let lineFillLength
 
-        let lineFillLength;
         if (lineLength === 3) {
             lineFillLength = 'three';
         } else if (lineLength === 2) {
@@ -36,7 +36,7 @@ class StatusStrip extends React.Component {
             <div className="status-strip">
                 <div className="line">
                     <div className="white" />
-                    <div className={`blue ${lineFillLength}`} />
+          <div className={classnames( 'blue', lineFillLength )} />
                 </div>
                 <StatusIndicator statusType="device" animation="ping" connected={deviceLive} />
                 <StatusIndicator
@@ -52,7 +52,6 @@ class StatusStrip extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    deviceSpecified: !!state.DeviceReducer.deviceSN,
     deviceConnected: state.DeviceReducer.deviceConnected,
     connectedToFirebase: state.DeviceReducer.connectedToFirebase,
     establishingFirebaseConnection: state.DeviceReducer.establishingFirebaseConnection,
